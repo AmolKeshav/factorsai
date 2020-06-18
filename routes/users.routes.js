@@ -12,5 +12,6 @@ router.use((req, res, next) => {
 });
 
 router.post("/addUser", Controllers.UserController.addUser);
+router.post("/submitUser", Controllers.UserController.submitUser);
 
 module.exports = router;
