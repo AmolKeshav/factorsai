@@ -56,21 +56,12 @@ module.exports = {
     });
   },
 
-  addUser_taskmng: (req, res) => {
-    similarityCheck.add({
-      "user": {
-        "first_name": "Amol",
-        "last_name": "Kesha",
-        "email": "amolkeshavsinha@gmail.com",
-        "city": "New Del",
-        "browser": "Chroa",
-        "device": "MacOS"
-      }
-    }, (err, response) => {
-      console.log(err);
-      console.log(response);
-
-      res.status(200).json({});
+  submitUser: (req, res) => {
+    console.log("Job Submitted!");
+    similarityCheck.add(req.body, (err, response) => {
+      // do something
     });
+
+    res.status(200).json({});
   }
 }

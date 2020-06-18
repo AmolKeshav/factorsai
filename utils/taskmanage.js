@@ -13,7 +13,7 @@ let similarityCheck = new Queue("similarity check", 'redis://127.0.0.1:6379');
 similarityCheck.process((job, done) => {
   let newUser = job.data.user;
   job.progress(42);
-  console.log(newUser)
+  
   async.waterfall([
     (callback) => {
       postgres.getAllUsers(callback);
@@ -45,19 +45,7 @@ similarityCheck.process((job, done) => {
       }
     }
   ], (err, result) => {
-    console.log(err, result)
-    if (err) {
-      console.error(err);
-      done({
-        message: "Something Went Wrong! User cannot be added!",
-        code: "22000"
-      });
-    } else {
-      done({
-        message: "User Added!",
-        code: "000"
-      })
-    }
+    done(err, result);
   });
 });
 
