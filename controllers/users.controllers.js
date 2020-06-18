@@ -6,6 +6,7 @@ const async = require("async");
 const postgres = require("../utils/postgres");
 const config = require("../config");
 const stringService = require("../services/string.service");
+const similarityCheck = require("../utils/taskmanage");
 
 module.exports = {
   addUser: (req, res) => {
@@ -52,6 +53,24 @@ module.exports = {
           message: "User Added!"
         })
       }
+    });
+  },
+
+  addUser_taskmng: (req, res) => {
+    similarityCheck.add({
+      "user": {
+        "first_name": "Amol",
+        "last_name": "Kesha",
+        "email": "amolkeshavsinha@gmail.com",
+        "city": "New Del",
+        "browser": "Chroa",
+        "device": "MacOS"
+      }
+    }, (err, response) => {
+      console.log(err);
+      console.log(response);
+
+      res.status(200).json({});
     });
   }
 }
