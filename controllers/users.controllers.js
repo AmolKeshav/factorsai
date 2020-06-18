@@ -6,6 +6,7 @@ const async = require("async");
 const postgres = require("../utils/postgres");
 const config = require("../config");
 const stringService = require("../services/string.service");
+const similarityCheck = require("../utils/taskmanage");
 
 module.exports = {
   addUser: (req, res) => {
@@ -53,5 +54,14 @@ module.exports = {
         })
       }
     });
+  },
+
+  submitUser: (req, res) => {
+    console.log("Job Submitted!");
+    similarityCheck.add(req.body, (err, response) => {
+      // do something
+    });
+
+    res.status(200).json({});
   }
 }
