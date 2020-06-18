@@ -16,7 +16,6 @@ module.exports = {
         postgres.getAllUsers(callback);
       },
       (users, callback) => {
-        console.log("ALL USERS:: ", users.rows)
         if (!users.rows.length) {
           postgres.createUser(newUser, callback);
         } else {
@@ -36,9 +35,7 @@ module.exports = {
               matched_id = users.rows[itr].user_id; 
             }
           }
-          console.log("MATCHED SCORE ", match_score);
-          console.log("MATCHED_ID: ", matched_id);
-
+          
           newUser.match_score = match_score;
           newUser.matched_id = matched_id;
           postgres.createUser(newUser, callback);
@@ -51,7 +48,6 @@ module.exports = {
           message: "Something Went Wrong! User cannot be added!"
         });
       } else {
-        // console.log("Final Result: ", result)
         res.status(200).json({
           message: "User Added!"
         })
