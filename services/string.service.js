@@ -42,5 +42,3 @@ module.exports = {
     return ((longerLength - editDistance(longer, shorter)) / parseFloat(longerLength)); 
   }
 }
-
-
